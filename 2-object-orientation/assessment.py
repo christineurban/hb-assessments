@@ -72,11 +72,8 @@ class Question(Student):
         self.correct_answer = correct_answer
 
     def ask_and_evaluate(self):
-        q_list = self.question.keys()
-        a_list = self.question.values()
-
-        q_string = raw_input(q_list[0] + " > ")
-        if q_string == a_list[0]:
+        q = raw_input(self.question["question"] + " > ")
+        if q == self.question["correct_answer"]:
             return True
         else:
             return False
@@ -86,11 +83,11 @@ class Exam(Question):
     questions = []
 
     def __init__(self, name):
-        # super(Exam, self).__init__(name)
         self.name = name
 
     def add_question(self, question, correct_answer):
-        self.questions.append({question: correct_answer})
+        self.questions.append({"question": question,
+                               "correct_answer": correct_answer})
 
     def administer(self):
         score = 0
@@ -105,7 +102,7 @@ class Exam(Question):
             else:
                 total_q += 1
 
-        return float(score / total_q)
+        return float(score)/float(total_q)
         
 
 def take_test(exam, student):
@@ -114,15 +111,25 @@ def take_test(exam, student):
 
      
 def example():
-    exam = Exam("Easy Test")
 
-    exam.questions.append({"2 + 3": "5",
-                           "sky color": "blue",
-                           "Hackbright...": "Academy",
-                           "Christine...": "Urban",
-                           "grass is": "green",
-                          })
+    exam = Exam("Colors")
 
-    student = Student("Christine", "Urban", "11 Neva Ct")
+    exam.questions.extend(({"question": "roses are",
+                           "correct_answer": "red"},
+
+                          {"question": "sky color",
+                           "correct_answer": "blue"},
+
+                          {"question": "they call me mellow",
+                           "correct_answer":  "yellow"},
+                          
+                          {"question": "plums are",
+                           "correct_answer": "purple"},
+                          
+                          {"question": "grass is",
+                           "correct_answer": "green"},
+                          ))
+
+    student = Student("Christine", "Urban", "Oakland")
 
     take_test(exam, student)
