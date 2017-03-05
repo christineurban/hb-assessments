@@ -32,7 +32,8 @@ Part 1: Discussion
 4. What is a method?
 
    It is like a function, but is defined on a class. Functions can be called
-   on their own, but methods must be called on a specific class.
+   on their own, but methods must be called on a specific class and always take
+   at least one parameter.
 
 5. What is an instance in object orientation?
 
@@ -54,5 +55,58 @@ Part 1: Discussion
 """
 
 
-# Parts 2 through 5:
-# Create your classes and class methods
+# Part 2: Classes and Init Methods
+
+class Student(object):
+
+    def __init__(self, first_name, last_name, address):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = address
+
+
+class Question(Student):
+
+    def __init__(self, question, correct_answer):
+        self.question = question
+        self.correct_answer = correct_answer
+
+    def ask_and_evaluate(self):
+        q_list = self.question.keys()
+        a_list = self.question.values()
+
+        q_string = raw_input(q_list[0] + " > ")
+        if q_string == a_list[0]:
+            return True
+        else:
+            return False
+
+
+class Exam(Question):
+    questions = []
+
+    def __init__(self, name):
+        # super(Exam, self).__init__(name)
+        self.name = name
+
+    def add_question(self, question, correct_answer):
+        self.questions.append({question: correct_answer})
+
+    def administer(self):
+        score = 0
+        total_q = 0
+
+        for self.question in self.questions:
+            ask_question = super(Exam, self).ask_and_evaluate()
+
+            if ask_question is True:
+                score += 1
+                total_q += 1
+            else:
+                total_q += 1
+
+        return float(score / total_q)
+
+        
+
+def take_test()
