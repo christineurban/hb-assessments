@@ -55,9 +55,8 @@ Part 1: Discussion
 """
 
 
-# Part 2: Classes and Init Methods
-
 class Student(object):
+    """A student at Hackbright."""
 
     def __init__(self, first_name, last_name, address):
         self.first_name = first_name
@@ -65,36 +64,34 @@ class Student(object):
         self.address = address
 
 
-class Question(Student):
+class AbstractQuestion(object):
+    """A single question evaluator"""
 
-    def __init__(self, question, correct_answer):
-        self.question = question
-        self.correct_answer = correct_answer
-
-    def ask_and_evaluate(self):
-        q = raw_input(self.question["question"] + " > ")
-        if q == self.question["correct_answer"]:
-            return True
-        else:
-            return False
-
-
-class Exam(Question):
     questions = []
 
     def __init__(self, name):
         self.name = name
 
     def add_question(self, question, correct_answer):
+        # adds question and answer as values in dictionary
         self.questions.append({"question": question,
                                "correct_answer": correct_answer})
+
+    def ask_and_evaluate(self):
+        answer = raw_input(self.question["question"] + " > ")
+        # prints question on screen and awaits user input
+
+        if answer == self.question["correct_answer"]:
+            return True
+        else:
+            return False
 
     def administer(self):
         score = 0
         total_q = 0
 
         for self.question in self.questions:
-            ask_question = super(Exam, self).ask_and_evaluate()
+            ask_question = self.ask_and_evaluate()
 
             if ask_question is True:
                 score += 1
@@ -102,19 +99,42 @@ class Exam(Question):
             else:
                 total_q += 1
 
-        return float(score)/float(total_q)
-        
+        return float(score) / float(total_q)
 
-def take_test(exam, student):
-    student.score = exam.administer()
+
+class Exam(AbstractQuestion):
+    """An exam with multiple questions. Returns % score.
+
+    Everything occurs in parent class.
+    """
+
+
+class Quiz(AbstractQuestion):
+    """A quiz with multiple questions. Pass/Fail at 50%."""
+
+    def administer(self):
+        percent = super(Quiz, self).administer()
+
+        if percent > 0.5:
+            return True
+        else:
+            return False
+
+
+def take_test(test, student):
+    """A Student instance takes test and is assigned its score"""
+
+    student.score = test.administer()
     print student.score
 
      
-def example():
+def example(test):
+    """An test and student example"""
 
-    exam = Exam("Colors")
+    # I pulled the instantiation of the test classes out of the
+    # function for step 5, to test each out individually.
 
-    exam.questions.extend(({"question": "roses are",
+    test.questions.extend(({"question": "roses are",
                            "correct_answer": "red"},
 
                           {"question": "sky color",
@@ -132,4 +152,14 @@ def example():
 
     student = Student("Christine", "Urban", "Oakland")
 
-    take_test(exam, student)
+    take_test(test, student)
+
+exam = Exam("Colors")
+quiz = Quiz("Colors")
+
+
+# Uncomment the lines below, one at a time, to see how exam and 
+# quiz work. Reload Python file after trying each example.
+
+# example(exam)
+# example(quiz)
