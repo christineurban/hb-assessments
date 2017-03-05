@@ -32,7 +32,13 @@ def without_duplicates(words):
         [2, 33333, 111111]
     """
 
-    return []
+    no_duplicates = set()
+
+    for word in words:
+        no_duplicates.add(word)
+
+    return list(no_duplicates)
+
 
 
 def find_unique_common_items(items1, items2):
@@ -62,7 +68,14 @@ def find_unique_common_items(items1, items2):
         [2]
     """
 
-    return []
+    unique_items = set()
+
+    for item1 in items1:
+        for item2 in items2:
+            if item1 == item2:
+                unique_items.add(item1)
+
+    return list(unique_items)
 
 def get_sum_zero_pairs(numbers):
     """Given list of numbers, return list of pairs summing to 0.
@@ -91,7 +104,18 @@ def get_sum_zero_pairs(numbers):
         [[-1, 1], [0, 0]]
     """
 
-    return []
+    remove_duplicates = set(numbers)
+    numbers_list = list(remove_duplicates)
+    sum_zero_pairs = set()
+    counter = 0
+
+    for num1 in numbers_list:
+        for num2 in numbers_list[counter:]:
+            if num1 + num2 == 0:
+                sum_zero_pairs.add((num1, num2))
+        counter += 1
+
+    return list(sum_zero_pairs)
 
 
 def top_chars(phrase):
@@ -118,6 +142,24 @@ def top_chars(phrase):
     Do not count spaces, but count all other characters.
 
     """
+
+    char_dict = {}
+    char_keys = []
+    char_values = []
+    top_chars = []
+
+    for char in phrase:
+        if char != " ":
+            char_dict[char] = char_dict.get(char, 0)
+            char_dict[char] += 1
+
+    for char, num in char_dict.items:
+        char_keys.append(char)
+        char_values.append(num)
+
+    for num in char_values
+
+
 
     return []
 

@@ -29,7 +29,21 @@ def count_words(phrase):
         {'Porcupine': 1, 'do.': 1, 'porcupine': 1, 'see,': 1}
     """
 
-    return {}
+
+    """ Takes a string of words and returns the count of each word.
+
+        Counts the number of times each word appears and assigns the
+        word to a key and the number of time it appears to a value,
+        returns a dictionary.
+    """
+    words = phrase.split()
+    unique_words = {}
+
+    for word in words:
+        unique_words[word] = unique_words.get(word, 0)
+        unique_words[word] += 1
+
+    return unique_words
 
 
 def get_melon_price(melon_name):
@@ -54,7 +68,21 @@ def get_melon_price(melon_name):
         'No price found'
     """
 
-    return 0
+    """Given melon, returns price of melon.
+
+    If melon is not in melons dictionary, returns 'No price found'
+    """
+
+    melons = {"Watermelon": 2.95,
+              "Cantaloupe": 2.50,
+              "Musk": 3.25,
+              "Christmas": 14.25,
+             }
+
+    if melon_name in melons:
+        print melons[melon_name]
+    else:
+        print "\'No price found\'"
 
 
 def word_length_sorted(words):
@@ -76,7 +104,27 @@ def word_length_sorted(words):
         [(2, ['ok']), (9, ['porcupine'])]
     """
 
-    return []
+    """Given a list of words, returns a list of tuples by word length.
+
+    Returns a sorted list, and the nested lists are sorted as well.
+    """
+
+    alpha_words = sorted(words)  
+    # words sorted here so they enter the value list sorted
+
+    char_count_dict = {}
+
+    for word in alpha_words:
+        word_len = len(word)
+
+        char_count_dict[word_len] = char_count_dict.get(word_len, [])
+        # if word length not in dictionary as key,
+        # adds it with a value of an empty list
+
+        char_count_dict[word_len].append(word)
+        # adds the word to the value list of the key of its length
+
+    return sorted(char_count_dict.items())
 
 
 def translate_to_pirate_talk(phrase):
@@ -118,7 +166,37 @@ def translate_to_pirate_talk(phrase):
         'me swabbie be not a man!'
     """
 
-    return ""
+    """Translates a given phrase from English to Pirate.
+
+    If word is not in the english_to_pirate dictionary, returns the same word
+    to the sentence.
+    """
+
+    english_to_pirate = {"sir": "matey",
+                         "hotel": "fleabag inn",
+                         "student": "swabbie",
+                         "man": "matey",
+                         "professor": "foul blaggart",
+                         "restaurant": "galley",
+                         "your": "yer",
+                         "excuse": "arr",
+                         "students": "swabbies",
+                         "are": "be",
+                         "restroom": "head",
+                         "my": "me",
+                         "is": "be",
+                        }
+
+    words = phrase.split()  # splits the string into a list of words
+    pirate_speak = ""
+
+    for word in words:
+        if word in english_to_pirate:
+            pirate_speak += english_to_pirate[word] + " "
+        else:
+            pirate_speak += word + " "
+
+    return pirate_speak.strip()  # removes the last space that was added
 
 
 def kids_game(names):
@@ -167,7 +245,54 @@ def kids_game(names):
     good solutions here will definitely require a dictionary.
     """
 
-    return []
+    """Take list of words and follow chain rules to produce new list of words.
+    """
+
+    name_dict = {}
+    game_results = [names[0]]
+    used_words = []
+    current_word = names[0]
+
+    # ADDING KEYS
+    for name in names:
+        last_letter = name[-1]
+        
+        name_dict[last_letter] = name_dict.get(last_letter, [])
+        # if last_letter key not in dictionary,
+        # adds it with a value of an empty list
+
+
+    # ADDING VALUES
+    for name in names:
+        first_letter = name[0]
+
+        if first_letter in name_dict:
+            name_dict[first_letter].append(name)
+        # if first letter of name matches a last letter key in 
+        # dictionary, add that name to the value list
+
+
+
+    # ADDING TO GAME RESULTS
+    while current_word[-1] in name_dict and current_word not in used_words:
+    # while the last letter of the current word is in the dictionary and is
+    # also not in used_words
+        used_words.append(current_word)
+        # add word to used words
+
+        for word in name_dict[current_word[-1]]:
+        # for each word in the value list
+            if word not in used_words:
+            # if the word hasn't been used yet
+                game_results.append(word)
+                # add word to game results
+                current_word = word
+                # change current word to word
+                break
+                # jump out of loop since word has been added
+
+
+    return game_results
 
 #####################################################################
 # You can ignore everything below this.
