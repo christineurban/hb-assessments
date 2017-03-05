@@ -106,7 +106,23 @@ class Exam(Question):
                 total_q += 1
 
         return float(score / total_q)
-
         
 
-def take_test()
+def take_test(exam, student):
+    student.score = exam.administer()
+    print student.score
+
+     
+def example():
+    exam = Exam("Easy Test")
+
+    exam.questions.append({"2 + 3": "5",
+                           "sky color": "blue",
+                           "Hackbright...": "Academy",
+                           "Christine...": "Urban",
+                           "grass is": "green",
+                          })
+
+    student = Student("Christine", "Urban", "11 Neva Ct")
+
+    take_test(exam, student)
