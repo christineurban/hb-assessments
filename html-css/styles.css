@@ -1,0 +1,19 @@
+/* Your CSS goes here */
+
+form input {
+    background-color: #ffff94;
+    margin-bottom: 10px;
+}
+
+form select {
+    margin-bottom: 10px;
+}
+
+#lastname {
+    font-weight: bold;
+}
+
+#instructions {
+    border: 1px black dotted;
+    padding: 5px;
+}
