@@ -1,1 +1,18 @@
-/* Your styles can go here. */
+/* Your CSS goes here */
+
+
+.navbar-default {
+    background-color: #b4f5fd;
+}
+
+.navbar-header {
+    float: left;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+}
+.navbar-brand {
+    float:none;
+    font-family: 'Baloo Bhaina', cursive;
+    font-size: 30px;
+}

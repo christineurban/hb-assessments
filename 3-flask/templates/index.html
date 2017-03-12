@@ -1,11 +1,16 @@
-<!doctype html>
-<html>
-<head>
-    <title>Sample Home Page</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block body %}
 
-<h1>This is the sample home page.</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <img class="img-responsive" src="http://wonderopolis.org/wp-content/uploads/2016/09/Watermelon_smile_xl_34465264_(Custom).jpg">
+      <br>
+      <div class="text-center">
+        <a class="btn btn-info btn-lg" href="/application-form" role="button">Apply to Ubermelon</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-</body>
-</html>
+{% endblock %}
