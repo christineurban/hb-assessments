@@ -283,7 +283,20 @@
     $("#t-rex-img").append(tRexPhoto);
   }
 
-  // put your code here
+  function updateTRexResults(evt) {
+    evt.preventDefault();
+
+    var formInputs = {
+      "attack-target": $('#t-rex-target').val()
+    };
+
+    $.post("/t-rex-attack.json",
+           formInputs,
+           showTRexResults
+           );
+  }
+
+  $('#t-rex-form').on('submit', updateTRexResults);
 
 </script>
 
