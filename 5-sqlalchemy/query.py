@@ -23,13 +23,15 @@ init_app()
 # 1. What is the datatype of the returned value of
 # ``Brand.query.filter_by(name='Ford')``?
 
-
+# query object
 
 # 2. In your own words, what is an association table, and what type of
 # relationship (many to one, many to many, one to one, etc.) does an
 # association table manage?
 
-
+# An association table is a table that has no other purpose than to connect
+# other tables together, hence the name "association". It has its own
+# primary key but the other fields are foreign keys.
 
 
 # -------------------------------------------------------------------
@@ -37,29 +39,29 @@ init_app()
 
 
 # Get the brand with the brand_id of ``ram``.
-q1 = None
+q1 = Brand.query.get('ram')
 
 # Get all models with the name ``Corvette`` and the brand_id ``che``.
-q2 = None
+q2 = Model.query.filter(Model.name=="Corvette", Model.brand_id=="che").all()
 
 # Get all models that are older than 1960.
-q3 = None
+q3 = Model.query.filter(Model.year > 1960).all()
 
 # Get all brands that were founded after 1920.
-q4 = None
+q4 = Brand.query.filter(Brand.founded > 1920).all()
 
 # Get all models with names that begin with ``Cor``.
-q5 = None
+q5 = Model.query.filter(Model.name.like("Cor%")).all()
 
 # Get all brands that were founded in 1903 and that are not yet discontinued.
-q6 = None
+q6 = Brand.query.filter(Brand.founded == 1903, Brand.discontinued.is_(None)).all()
 
 # Get all brands that are either 1) discontinued (at any time) or 2) founded
 # before 1950.
-q7 = None
+q7 =  Brand.query.filter((Brand.discontinued.isnot(None)) | (Brand.founded < 1950)).all()
 
 # Get all models whose brand_id is not ``for``.
-q8 = None
+q8 = Brand.query.filter(Brand.brand_id != 'for').all()
 
 
 

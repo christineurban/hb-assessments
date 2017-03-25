@@ -29,7 +29,13 @@ class Brand(db.Model):
     discontinued = db.Column(db.Integer,
                              nullable=True)
 
+    model = db.relationship("Model", backref="brand")
 
+    def __repr__(self):
+        """Show info about brand."""
+
+        return "<Brand id={} name={} founded={} hq={} dc={}>".format(
+               self.brand_id, self.name, self.founded, self.headquarters, self.discontinued)
 
 class Model(db.Model):
     """Car model."""
@@ -42,12 +48,15 @@ class Model(db.Model):
     year = db.Column(db.Integer,
                         nullable=False)
     brand_id = db.Column(db.String(3),
-                             nullable=False)
-    discontinued = db.Column(db.Integer,
-                             nullable=True)
+                         db.ForeignKey("brands.brand_id"))
     name = db.Column(db.String(20),
-                     nullable=False,
-                     unique=True)
+                     nullable=False)
+
+    def __repr__(self):
+        """Show info about model."""
+
+        return "<Model id={} year={} brand_id={} name={}>".format(
+               self.model_id, self.year, self.brand_id, self.name)
 
 # End Part 1
 
