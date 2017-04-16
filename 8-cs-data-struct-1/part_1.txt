@@ -1,0 +1,49 @@
+Runtime
+
+1. The workload is determined by the number of animal crackers in the box. The
+higher the number, the bigger the workload. The runtine, however, would always
+be O(n).
+
+2.  O(1)
+    O(log n)
+    O(n)
+    O(n log n)
+    O(n^2)
+    O(2^n)
+
+
+Stacks and Queues
+
+1.1 stack
+1.2 queue
+1.3 stack
+
+2. help queue, grocery store line
+3. pancakes, stacking cds
+
+
+Linked Lists
+
+1.  Nodes - apple, berry, cherry boxes ("Apple", next)
+    Data - attribute about self ("Apple")
+    Head - LList pointing to ("Apple")
+    Tail is not specified, but can be determined by traversing the linked list
+
+2. Doubly-linked lists have a next and a prev, whereas singly-linked lists only
+have a next
+
+3. If we don't know what the tail is, then we only know where the head is, so
+we have to traverse starting from the head. If there is a tail, then we only
+have to do a O(1) action to append.
+
+
+Trees
+
+1. food, Italian, Indian, Mexican, lasagna, pizza, tikka masala, saag, burritos
+
+2. food, Mexican, enchiladas, tacos, burritos, Indian, tikka masala, saag,
+Italian, pizza, thin crust, Chicago-style
+
+3. It is balanced, divided as evenly as possible, each node can have no more 
+than 2 children
+
