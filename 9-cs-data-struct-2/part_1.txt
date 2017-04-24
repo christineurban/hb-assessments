@@ -1,0 +1,63 @@
+Recursion
+
+1. Recursion is calling a function on itself. This is useful when you want to 
+repeat the actions of the function with a new variable that is determined as a 
+result of the function.
+
+2. A base case is necessary in order to have a stopping case for the recursive 
+function. Otherwise it will get stuck in an infinite loop.
+
+
+
+Graphs
+
+1. A graph is a data structure with loops. They are usually used to model 
+relationships between things.
+
+2. Trees are often directed, graphs can be directed or undirected. Unlike 
+graphs, trees have hierarchy. Graphs can be unconnected unlike trees.
+
+3. Social media connections can be modeled with a graph.
+
+
+
+Performance of Different Data Structures
+
+Data Structure                  Index   Search  Add-R   Add-L   Pop-L   Pop-R
+Python List (Array)             O(1)    O(n)    O(1)    O(n)    O(n)    O(1)         
+Linked List                     O(n)    O(n)    O(n)*   O(1)    O(1)    O(n)*
+Doubly-Linked List              O(n)    O(n)    O(1)    O(1)    O(1)    O(1)       
+Queue (as Array)                X       X       O(1)    X       O(n)    X
+Queue (as LL or DLL)            X       X       O(1)    X       O(1)    X
+Stack (as Array, LL, or DLL)    X       X       O(1)    X       X       O(1)
+Deque (as DLL)                  X       X       O(1)    O(1)    O(1)    O(1)
+
+*O(1) if knowledge of a tail
+
+
+Data Structure          Get         Add         Delete      Iterate Memory
+Dictionary (Hash Map)   O(1)        O(1)        O(1)        O(n)    medium
+Set (Hash Map)          O(1)        O(1)        O(1)        O(n)    medium  
+Binary Search Tree      O(log n)    O(log n)    O(log n)    O(n)    little
+Tree                    O(n)        O(n)*       O(n)*       O(n)    little
+
+*I looked up the answer to this and it says O(1), but my thinking is that it
+takes O(n) to find it, then O(1) to remove it.
+
+
+
+Sorting
+
+1. Bubble sort works by looking at the current list item and the next list item,
+then switches them if the left one is bigger than the right one. This "bubbles"
+the biggest item to the end. It will repeatedly iterate through the list until 
+all are bubbled to the end.
+
+2. Merge sort works by repeatedly splitting the list in half until all are a
+list of one. Merging already sorted lists is fast, so since a list of one is 
+already sorted, merging them back together will accurately sort them. 
+
+3. Quick sort works by picking a pivot and moving everything lower than the
+pivot to the left, and everything higher to the right. This repeats for the list
+created below and above the pivot until the list length is 1, then it gets 
+returned.
